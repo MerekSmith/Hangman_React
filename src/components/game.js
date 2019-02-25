@@ -113,7 +113,7 @@ export default class Game extends Component {
       guessedLetters.push(key);
     }
 
-    
+
 
     this.setState({
       letter: key,
@@ -149,7 +149,7 @@ export default class Game extends Component {
         lose: null
       });
       this.chooseWord();
-    },3000);
+    }, 3000);
 
 
     console.log('lose hit 2', this.state.win);
@@ -203,25 +203,25 @@ export default class Game extends Component {
         <h1>Hangman!</h1>
         {!this.state.started ?
           <button type="button" className="btn btn-success btn-lg" onClick={this.chooseWord}>Start Game</button> :
-          null
+          <div>
+            <div className="row user-stats">
+              <div className="col-sm-2" />
+              <div className="col-sm-4">
+                <h2 className="stats">Wins: {this.state.wins}</h2>
+              </div>
+              <div className="col-sm-4">
+                <h2 className="stats">Losses: {this.state.losses}</h2>
+              </div>
+            </div>
+            <h2>Guesses Remaing: {this.state.guesses}</h2>
+            <h1 className="answer-word">{this.state.answerWord.join('')}</h1>
+            {this.state.win ? <h2 className="win-lose">You Won!</h2> : null}
+            {this.state.lose ? <h2 className="win-lose">You Lost! Try Again!</h2> : null}
+            <h2 className="guessed-letters">Guessed Letters: {this.state.guessedLetters.join(', ')}</h2>
+            {this.state.badKey ? <h2>Please select a letter</h2> : null}
+            {this.state.dupKey ? <h2>Please select a new letter</h2> : null}
+          </div>
         }
-        <div className="row user-stats">
-          <div className="col-sm-2" />
-          <div className="col-sm-4">
-            <h2 className="stats">Wins: {this.state.wins}</h2>
-          </div>
-          <div className="col-sm-4">
-            <h2 className="stats">Losses: {this.state.losses}</h2>
-          </div>
-        </div>
-        <h2>Guesses Remaing: {this.state.guesses}</h2>
-        <h1 className="answer-word">{this.state.answerWord.join('')}</h1>
-        {this.state.win ? <h2 className="win-lose">You Won!</h2> : null}
-        {this.state.lose ? <h2 className="win-lose">You Lost! Try Again!</h2> : null}
-        <h2 className="guessed-letters">Guessed Letters: {this.state.guessedLetters.join(', ')}</h2>
-        {this.state.badKey ? <h2>Please select a letter</h2> : null}
-        {this.state.dupKey ? <h2>Please select a new letter</h2> : null}
-
       </div>
     )
   }

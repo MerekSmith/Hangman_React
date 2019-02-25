@@ -52,7 +52,7 @@ export default class Game extends Component {
   chooseWord = () => {
     const hangmanWords = ['Disney', 'Ariel', 'Belle', 'Moana', 'Elsa', 'Anna', 'Castle', 'Princess', 'Prince', 'Mulan', 'Aurora', 'Tiana', 'Snow White', 'Cinderella', 'Repunzel', 'Princess and the Frog', 'Beauty and the Beast', 'Brave', 'Merida', 'Sleeping Beauty', 'Frozen', 'Charming', 'Jasmine', 'Aladdin', 'Tangled'];
 
-    let word = hangmanWords[Math.floor(Math.random() * hangmanWords.length)];
+    let word = hangmanWords[Math.floor(Math.random() * hangmanWords.length)].toUpperCase();
     let wordArray = word.split('');
     console.log(wordArray);
 

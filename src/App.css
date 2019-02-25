@@ -6,7 +6,7 @@ html, body {
 .app-container {
 	text-align: center;
 	background: url("./assets/background_chalkboard.jpg") center no-repeat;
-	background-size: cover;
+	/* background-size: cover; */
   background-attachment: fixed;
 	height: 100vh;
 	width: 100%;

@@ -1,0 +1,12 @@
+.game-container {
+	padding-top: 100px;
+}
+
+.answer-word {
+	letter-spacing: 8px;
+	font-size: 40px;
+}
+
+.stats {
+	display: inline-block;
+}

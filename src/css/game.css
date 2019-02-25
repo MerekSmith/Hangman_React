@@ -1,5 +1,5 @@
 .game-container {
-	padding-top: 100px;
+	padding-top: 80px;
 }
 
 .answer-word {
@@ -9,4 +9,8 @@
 
 .stats {
 	display: inline-block;
+}
+
+.guessed-letters {
+	padding-top: 150px;
 }

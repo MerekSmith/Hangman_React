@@ -158,20 +158,22 @@ export default class Game extends Component {
     return (
       <div className="game-container container">
         <h1>Hangman!</h1>
-        <button onClick={this.chooseWord}>start</button>
+        <button type="button" className="btn btn-success" onClick={this.chooseWord}>Start Game</button>
 				<div className = "row">
-					<div className="col-md-6">
+          <div className="col-md-2" />
+					<div className="col-md-4">
 						<h2 className="stats">Wins: {this.state.wins}</h2>
 					</div>
-					<div className="col-md-6">
+					<div className="col-md-4">
 						<h2 className="stats">Losses: {this.state.losses}</h2>
 					</div>
+          <div className="col-md-2" />
 				</div>
         <h2>Guesses Remaing: {this.state.guesses}</h2>
         <h1>{this.state.word}</h1>
         <h1>{this.state.answerArray}</h1>
         <h1 className="answer-word">{this.state.answerWord}</h1>
-        <h2>Guessed Letters: {this.state.guessedLetters.join(', ')}</h2>
+        <h2 className="guessed-letters">Guessed Letters: {this.state.guessedLetters.join(', ')}</h2>
 				{this.state.badKey ? <h2>Please select a letter</h2> : null}
 				{this.state.dupKey ? <h2>Please select a new letter</h2> : null}
 

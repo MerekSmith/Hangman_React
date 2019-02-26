@@ -160,16 +160,12 @@ export default class Game extends Component {
 
   // Initialize random word. 
   chooseWord = () => {
-    this.setState({
-      started: true,
-      playing: true
-    });
 
     const hangmanWords = ['Disney', 'Ariel', 'Belle', 'Moana', 'Elsa', 'Anna', 'Castle', 'Princess', 'Prince', 'Mulan', 'Aurora', 'Tiana', 'Snow White', 'Cinderella', 'Repunzel', 'Princess and the Frog', 'Beauty and the Beast', 'Brave', 'Merida', 'Sleeping Beauty', 'Frozen', 'Charming', 'Jasmine', 'Aladdin', 'Tangled'];
 
     let word = hangmanWords[Math.floor(Math.random() * hangmanWords.length)].toUpperCase();
     let answerArray = word.split('');
-    let guesses = this.state.guesses;
+    let guesses = 10;
 
     let blankArray = [];
 
@@ -188,7 +184,9 @@ export default class Game extends Component {
       word,
       answerArray,
       answerWord: blankArray,
-      guesses,
+      started: true,
+			playing: true,
+			guesses,
       guessedLetters: []
 
     });

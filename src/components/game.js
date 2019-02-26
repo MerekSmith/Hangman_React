@@ -141,10 +141,6 @@ export default class Game extends Component {
 
   // Initialize random word. 
   chooseWord = () => {
-    this.setState({
-      started: true,
-      playing: true
-    });
 
     const disneyWords = ['Disney', 'Ariel', 'Belle', 'Moana', 'Elsa', 'Anna', 'Castle', 'Princess', 'Prince', 'Mulan', 'Aurora', 'Tiana', 'Snow White', 'Cinderella', 'Repunzel', 'Princess and the Frog', 'Beauty and the Beast', 'Brave', 'Merida', 'Sleeping Beauty', 'Frozen', 'Charming', 'Jasmine', 'Aladdin', 'Tangled'];
 
@@ -168,7 +164,8 @@ export default class Game extends Component {
     checkDup();
     usedWordsArray.push(word);
     let answerArray = word.split('');
-    let guesses = this.state.guesses;
+    let guesses = 10;
+
     let blankArray = [];
 
     for (let i = 0; i < answerArray.length; i++) {
@@ -187,7 +184,9 @@ export default class Game extends Component {
       answerWord: blankArray,
       guesses,
       guessedLetters: [],
-      usedWordsArray
+      usedWordsArray,
+      started: true,
+			playing: true,
     });
   }
 

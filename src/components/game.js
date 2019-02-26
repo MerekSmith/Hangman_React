@@ -15,6 +15,7 @@ export default class Game extends Component {
       answerArray: [],
       guessedLetters: [],
       answerWord: [],
+      usedWordsArray: [],
       badKey: null,
       dupKey: null,
       started: false,
@@ -125,24 +126,7 @@ export default class Game extends Component {
   };
 
 
-  // end = () => {
-  //   console.log('win hit', this.state.win);
-
-  //   this.setState({
-  //     win: null,
-  //     lose: null
-  //   });
-
-  //   this.chooseWord();
-
-
-  //   console.log('win hit 2', this.state.win);
-
-  // };
-
-
   end = () => {
-    console.log('lose hit', this.state.win);
     setTimeout(() => {
       this.setState({
         win: null,
@@ -150,9 +134,6 @@ export default class Game extends Component {
       });
       this.chooseWord();
     }, 3000);
-
-
-    console.log('lose hit 2', this.state.win);
 
   };
 
@@ -165,12 +146,31 @@ export default class Game extends Component {
       playing: true
     });
 
-    const hangmanWords = ['Disney', 'Ariel', 'Belle', 'Moana', 'Elsa', 'Anna', 'Castle', 'Princess', 'Prince', 'Mulan', 'Aurora', 'Tiana', 'Snow White', 'Cinderella', 'Repunzel', 'Princess and the Frog', 'Beauty and the Beast', 'Brave', 'Merida', 'Sleeping Beauty', 'Frozen', 'Charming', 'Jasmine', 'Aladdin', 'Tangled'];
+    const disneyWords = ['Disney', 'Ariel', 'Belle', 'Moana', 'Elsa', 'Anna', 'Castle', 'Princess', 'Prince', 'Mulan', 'Aurora', 'Tiana', 'Snow White', 'Cinderella', 'Repunzel', 'Princess and the Frog', 'Beauty and the Beast', 'Brave', 'Merida', 'Sleeping Beauty', 'Frozen', 'Charming', 'Jasmine', 'Aladdin', 'Tangled'];
 
-    let word = hangmanWords[Math.floor(Math.random() * hangmanWords.length)].toUpperCase();
+    const kidWords = ['fray', 'gray', 'play', 'bake', 'cake', 'lake', 'make', 'take', 'ate', 'date', 'gate', 'mate', 'rate', 'age', 'cage', 'give', 'gift', 'page', 'damp', 'lamp', 'stamp', 'here', 'there', 'tie', 'pie', 'bike', 'hike', 'like', 'kite', 'cry', 'dry', 'fry', 'try', 'paw', 'raw', 'saw', 'toe', 'hoe', 'bow', 'low', 'mow', 'crow', 'now', 'cow', 'bent', 'dent', 'tent', 'feet', 'beep', 'deep', 'jeep', 'peep', 'green', 'bold', 'cold', 'fold', 'hold', 'told', 'cone', 'bone', 'one', 'two', 'three', 'four', 'five', 'six', 'cube', 'tube', 'eat', 'heat', 'seat', 'dust', 'gust', 'must', 'paw', 'saw', 'find', 'kind', 'mind', 'bird', 'duck', 'frog', 'doll', 'game', 'toy', 'train', 'boat', 'plane', 'truck', 'ride', 'hide', 'wide', 'mine', 'ours', 'they', 'them', 'bowl', 'fork', 'spoon', 'home', 'pond', 'room', 'neck', 'add', 'after', 'again', 'any', 'apple', 'arm', 'banana', 'bark', 'been', 'being', 'bent', 'best', 'bone', 'black', 'block', 'blue', 'bring', 'brown', 'bush', 'came', 'cane', 'card', 'cart', 'case', 'chain', 'chair', 'chalk', 'chat', 'chin', 'chop', 'clam', 'clan', 'clap', 'claw', 'clay', 'clean', 'cool', 'dark', 'desk', 'drop', 'end', 'family', 'fang', 'fast', 'fell', 'few', 'fill', 'flag', 'flat', 'fool', 'foot', 'fort', 'free', 'fresh', 'from', 'glad', 'golf', 'gone', 'grit', 'hand', 'hang', 'happy', 'harm', 'help', 'here', 'hide', 'hill', 'hint', 'hope', 'horn', 'how', 'ill', 'into', 'jaw', 'joke', 'just', 'keep', 'king', 'last', 'line', 'look', 'luck', 'made', 'many', 'meal', 'must', 'nice', 'new', 'next', 'odd', 'put', 'quit', 'rang', 'space', 'said', 'time', 'was', 'yard', 'yarn']
+
+    const kidsHardWords = ['baseball', 'brother', 'can’t', 'clover', 'cloud', 'crayon', 'club', 'coat', 'come', 'cookie', 'could', 'crow', 'cube', 'cupcake', 'deal', 'dew', 'didn’t', 'dime', 'dine', 'dirt', 'doll', 'don’t', 'door', 'draw', 'dream', 'dress', 'drink', 'dull', 'each', 'east', 'easy', 'eight', 'eleven', 'every', 'father', 'field', 'fine', 'first', 'flew', 'flower', 'friend', 'globe', 'going', 'grape', 'grass', 'grew', 'heavy', 'I’m', 'it’s', 'know', 'marker', 'maybe', 'milk', 'morning', 'mother', 'myself', 'much', 'never', 'notebook', 'other', 'over', 'paper', 'pencil', 'pretty', 'rabbit', 'school', 'seven', 'sew', 'shirt', 'sister', 'smell', 'stray', 'string', 'summer', 'start', 'swing', 'table', 'thank', 'thrift', 'twelve', 'twist', 'under', 'very', 'water', 'were', 'where', 'won’t', 'yellow', 'zebra', 'zero', 'always', 'animal', 'around', 'because', 'before', 'believe', 'between', 'bread', 'bright', 'busy', 'cannot', 'caught', 'charge', 'clapped', 'clean', 'chicken', 'children', 'doctor', 'does', 'goes', 'everyone', 'everywhere', 'flight', 'inside', 'juice', 'kitchen', 'laughter', 'lunchroom', 'nobody', 'once', 'orange', 'outside', 'piece', 'purple', 'raise', 'round', 'shoes', 'today', 'used', 'weak', 'week', 'whale', 'which', 'while', 'wool', 'yesterday']
+
+    let usedWordsArray = this.state.usedWordsArray;
+    let word = ""
+
+    function checkDup() {
+      word = kidWords[Math.floor(Math.random() * kidWords.length)].toUpperCase();
+
+      if (usedWordsArray.includes(word)) {
+        if (usedWordsArray.length === kidWords.length) {
+          usedWordsArray = [];
+        } else {
+          checkDup();
+        }
+      }
+    }
+
+    checkDup();
+    usedWordsArray.push(word);
     let answerArray = word.split('');
     let guesses = this.state.guesses;
-
     let blankArray = [];
 
     for (let i = 0; i < answerArray.length; i++) {
@@ -180,17 +180,16 @@ export default class Game extends Component {
         blankArray[i] = "_";
       }
     }
-    console.log('answer', word);
+    // console.log('answer', word);
 
-    // let answerWord = blankArray.join("");
 
     this.setState({
       word,
       answerArray,
       answerWord: blankArray,
       guesses,
-      guessedLetters: []
-
+      guessedLetters: [],
+      usedWordsArray
     });
   }
 

@@ -81,8 +81,8 @@ export default class Game extends Component {
         if (key === answerArray[i]) {
           answerWord[i] = key;
         }
-      }
-      // answerWord = answerWord.join('');
+			}
+			// Win logic: increase win count and set state.
       if (!answerWord.includes("_")) {
         wins += 1;
         this.setState({
@@ -91,7 +91,7 @@ export default class Game extends Component {
           answerWord,
           playing: false
         });
-        setTimeout(this.end(), 5000);
+        this.end();
         return false;
       }
     } else {
@@ -100,22 +100,21 @@ export default class Game extends Component {
         guesses
       });
       if (guesses === 0) {
-        // put lose message function here.
-        losses += 1;
+        // lose logic here: increase lose count, set state with correct answer so it shows for a moment.
+				losses += 1;
         this.setState({
           losses,
           lose: true,
-          answerWord,
+          answerWord: answerArray,
           playing: false
         });
-        setTimeout(this.end(), 5000);
+        this.end();
         return false;
       }
       guessedLetters.push(key);
     }
 
-
-
+		// if game is still going (no win or loss), set state and continue playing
     this.setState({
       letter: key,
       badKey: null,
@@ -126,6 +125,7 @@ export default class Game extends Component {
   };
 
 
+	// Once the user guesses correctly or uses all their guesses, the correct answer will stay up for a moment then switch to a new word.
   end = () => {
     setTimeout(() => {
       this.setState({
@@ -133,7 +133,7 @@ export default class Game extends Component {
         lose: null
       });
       this.chooseWord();
-    }, 3000);
+    }, 4000);
 
   };
 
@@ -209,7 +209,7 @@ export default class Game extends Component {
                 <h2 className="stats">Losses: {this.state.losses}</h2>
               </div>
             </div>
-            <h2>Guesses Remaing: {this.state.guesses}</h2>
+            <h2>Guesses Remaining: {this.state.guesses}</h2>
             <h1 className="answer-word">{this.state.answerWord.join('')}</h1>
             {this.state.win ? <h2 className="win-lose">You Won!</h2> : null}
             {this.state.lose ? <h2 className="win-lose">You Lost! Try Again!</h2> : null}

@@ -1,18 +1,17 @@
-html, body {
-	height: 100%;
-	width: 100%;
-	background-color: rgb(0,45,4);
-	white-space: inherit;
-	color: white;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 45, 4);
+  white-space: inherit;
+  color: white;
 }
 
 .app-container {
-	text-align: center;
-	background: url("./assets/background_chalkboard.jpg") center no-repeat;
-	/* background-size: cover; */
+  text-align: center;
+  background: url("./assets/background_chalkboard.jpg") center no-repeat;
+  background-size: 160vh;
   background-attachment: fixed;
-	height: 100vh;
-	width: 100%;
+  height: 100vh;
+  width: 100%;
 }
-
-

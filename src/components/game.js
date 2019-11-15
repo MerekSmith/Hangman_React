@@ -10,6 +10,7 @@ export default class Game extends Component {
       playerCount: null,
       currentPlayer: null,
       word: null,
+      showText: "text",
       letter: "",
       guesses: 10,
       wins: 0,
@@ -687,7 +688,7 @@ export default class Game extends Component {
                 {/* <label htmlFor="userInputWord">User Word:</label> */}
                 <input
                   name='word'
-                  type='text'
+                  type={this.state.showText}
                   className='form control form-control-lg'
                   id='userInput'
                   placeholder='Enter Word Here'
@@ -695,7 +696,23 @@ export default class Game extends Component {
                   data-error='Word is required.'
                   onChange={e => this.setState({ word: e.target.value })}
                   value={this.state.word}
+                  autoComplete='off'
                 />
+                <br />
+                <br />
+                <input
+                  type='checkbox'
+                  name='showText'
+                  value='Show Text'
+                  onChange={() => {
+                    if (this.state.showText === "password") {
+                      this.setState({ showText: "text" });
+                    } else {
+                      this.setState({ showText: "password" });
+                    }
+                  }}
+                />{" "}
+                Hide Text
               </div>
               <button type='submit' className='btn btn-lg btn-success'>
                 Submit
